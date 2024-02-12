@@ -17,7 +17,8 @@ class DoctorFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'licenseNumber' => $this->faker->numerify('#########'), // Genera un número de licencia aleatorio
+            'idPerson' => $this->faker->unique()->numberBetween(1, 100), // Genera un ID de persona aleatorio
         ];
     }
 }
