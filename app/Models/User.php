@@ -18,11 +18,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'role', 'user', 'password', 'idPerson'
     ];
-
+    protected $table = 'Users';
+    public function person()
+    {
+        return $this->belongsTo(Person::class, 'idPerson');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -39,7 +41,16 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($user) {
+            if ($user->isDirty('password')) {
+                $user->password = bcrypt($user->password);
+            }
+        });
+    }
 }

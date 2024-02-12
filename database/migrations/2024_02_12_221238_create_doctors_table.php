@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('doctors', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('idDoctor');
+            $table->string('licenseNumber', 25);
+            $table->unsignedBigInteger('idPerson'); // Usamos unsignedBigInteger para la clave foránea
+            $table->foreign('idPerson')->references('idPerson')->on('Person')->onDelete('no action')->onUpdate('no action');
         });
     }
 
