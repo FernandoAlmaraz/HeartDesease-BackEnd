@@ -20,6 +20,7 @@ class Person extends Model
         'phone',
         'identityCard',
         'status',
+
     ];
 
     public $timestamps = false;
@@ -29,9 +30,9 @@ class Person extends Model
         return $this->hasMany(Patient::class, 'idPerson');
     }
 
-    public function user()
+    public function account()
     {
-        return $this->hasOne(User::class, 'idPerson');
+        return $this->hasOne(Account::class, 'idPerson');
     }
 
     public function doctor()

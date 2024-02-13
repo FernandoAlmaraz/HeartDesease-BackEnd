@@ -13,5 +13,10 @@ class Account extends Model
         'password',
         'idPerson',
     ];
+    public function person()
+    {
+        return $this->belongsTo(Person::class, 'idPerson');
+    }
+
     use HasFactory;
 }

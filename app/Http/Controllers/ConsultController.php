@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ConsultCollection;
 use App\Models\Consult;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class ConsultController extends Controller
      */
     public function index()
     {
-        //
+        $consults = Consult::paginate();
+        return new ConsultCollection($consults);
     }
 
     /**

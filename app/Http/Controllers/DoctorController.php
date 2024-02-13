@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DoctorCollection;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        //
+        $doctors = Doctor::paginate();
+        return new DoctorCollection($doctors);
     }
 
     /**
