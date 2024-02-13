@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
     protected $fillable = ['licenseNumber', 'idPerson'];
-    protected $table = 'Doctor'; // Especifica el nombre de la tabla
+    protected $table = 'doctors';
 
     protected $primaryKey = 'idDoctor'; // Especifica el nombre de la clave primaria
 

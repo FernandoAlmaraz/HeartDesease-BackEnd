@@ -1,44 +1,45 @@
 <?php
 
-namespace Database\Factories;
+namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
- */
-class UserFactory extends Factory
+class User extends Authenticatable
 {
-    /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * Define the model's default state.
+     * The attributes that are mass assignable.
      *
-     * @return array<string, mixed>
+     * @var array<int, string>
      */
-    public function definition(): array
-    {
-        return [
-            'rol' => $this->faker->randomElement([1, 2, 3]), // Aquí puedes definir tus roles según tus necesidades
-            'user' => $this->faker->userName,
-            'password' => Hash::make('password'), // Hasheamos la contraseña por defecto 'password'
-            'idPerson' => function () {
-                return \App\Models\Person::factory()->create()->idPerson;
-            }
-        ];
-    }
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
 
     /**
-     * Indicate that the model's email address should be unverified.
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
      */
-    // public function unverified(): static
-    // {
-    //     return $this->state(fn (array $attributes) => [
-    //         'email_verified_at' => null,
-    //     ]);
-    // }
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
 }

@@ -7,29 +7,35 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
+    use HasFactory;
+
+    protected $table = 'people';
+    protected $primaryKey = 'idPerson';
+
     protected $fillable = [
         'firstName',
-        'lastName', 'birthDate', 'sex', 'phone',
-        'identityCard', 'status'
+        'lastName',
+        'birthDate',
+        'sex',
+        'phone',
+        'identityCard',
+        'status',
     ];
-    protected $table = 'Person';
+
     public $timestamps = false;
-    // Relación con pacientes
+    // Definir relaciones
     public function patients()
     {
-        return $this->hasMany(Patient::class);
+        return $this->hasMany(Patient::class, 'idPerson');
     }
 
-    // Relación con usuarios
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class, 'idPerson');
     }
 
-    // Relación con doctores
     public function doctor()
     {
-        return $this->hasOne(Doctor::class);
+        return $this->hasOne(Doctor::class, 'idPerson');
     }
-    use HasFactory;
 }

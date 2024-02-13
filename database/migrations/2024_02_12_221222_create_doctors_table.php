@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('idDoctor');
             $table->string('licenseNumber', 25);
             $table->unsignedBigInteger('idPerson'); // Usamos unsignedBigInteger para la clave foránea
-            $table->foreign('idPerson')->references('idPerson')->on('Person')->onDelete('no action')->onUpdate('no action');
+            $table->foreign('idPerson')->references('idPerson')->on('people')->onDelete('no action')->onUpdate('no action');
         });
     }
 

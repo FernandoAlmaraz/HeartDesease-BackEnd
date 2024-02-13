@@ -22,7 +22,7 @@ class PersonFactory extends Factory
             'firstName' => $this->faker->firstName,
             'lastName' => $this->faker->lastName,
             'birthDate' => $this->faker->dateTimeBetween('-80 years', '-18 years')->format('Y-m-d'), // Edad entre 18 y 80 años
-            'sex' => $this->faker->randomElement(['Male', 'Female']), // Género aleatorio
+            'sex' => $this->faker->randomElement([0, 1]), // Género aleatorio
             'phone' => $this->faker->phoneNumber,
             'identityCard' => $this->faker->numerify('############'), // Número de identidad aleatorio
             'status' => $this->faker->randomElement([0, 1]), // Estado aleatorio

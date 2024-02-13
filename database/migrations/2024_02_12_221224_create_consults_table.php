@@ -27,12 +27,12 @@ return new class extends Migration
             $table->tinyInteger('diabetic');
             $table->string('diagnostic', 5);
             $table->tinyInteger('status');
-            $table->dateTime('consultDate')->nullable()->default(DB::raw('CURRENT_TIMESTAMP')); // Se establece como nullable para permitir valores nulos
+            $table->dateTime('consultDate')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->dateTime('updateDate')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
 
-            // Definir restricciones de clave foránea
-            $table->foreign('idDoctor')->references('idDoctor')->on('Doctor')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('idPatient')->references('idPatient')->on('Patient')->onDelete('cascade')->onUpdate('cascade');
+            // Define las restricciones de clave foránea
+            $table->foreign('idDoctor')->references('idDoctor')->on('doctors')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('idPatient')->references('idPatient')->on('patients')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

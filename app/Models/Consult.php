@@ -9,7 +9,7 @@ class Consult extends Model
 {
     use HasFactory;
 
-    protected $table = 'Consult'; // Especifica el nombre de la tabla
+    protected $table = 'consults'; // Especifica el nombre de la tabla
 
     protected $primaryKey = 'idConsult'; // Especifica el nombre de la clave primaria
 
